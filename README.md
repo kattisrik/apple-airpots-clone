@@ -68,3 +68,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+import { useEffect, useState } from 'react';
+import './app.css'
+function App() {
+  const totalImages = 64;
+  const [images, setImages] = useState([]);
+  useEffect(() => {
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const tempImages = []
+    for(let i=0; i<totalImages; i++) {
+      const img = new Image();
+      img.src = `https://www.apple.com/105/media/us/airpods-pro/2022/d2deeb8e-83eb-48ea-9721-f567cf0fffa8/anim/hero/medium/${String(i).padStart(4, '0')}.png`;
+      tempImages.push(img)
+    }
+    setImages(tempImages)
+  }, [])
+  console.log("images", images)
+  return (
+    <div className='main-body-container'>
+      <h1 className='main-title'>Airpods Pro</h1>
+      <canvas></canvas>
+    </div>
+  );
+}
+
+export default App;
+
