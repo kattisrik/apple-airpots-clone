@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './app.css'
+import './app.css';
 const App = () => {
   const canvasRef = useRef(null);
   const totalImages = 64;
