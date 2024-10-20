@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import './App.css';
+import Menubar from './Components/Menubar';
 const App = () => {
   const canvasRef = useRef(null);
   const totalImages = 64;
@@ -12,6 +13,9 @@ const App = () => {
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    if(canvas.width < canvas.height) {
+      canvas.style.top = '80%'
+    }
     canvas.style.backgroundColor = 'transparent';
 
     for (let i = 0; i < totalImages; i++) {
@@ -49,28 +53,32 @@ const App = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const img = images.current[currentFrameIndex.current];
       if (!img) return;
-
+  
       const canvasRatio = canvas.width / canvas.height;
       const imgRatio = img.width / img.height;
       let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
-
+  
+      // Set a maximum scale factor based on the screen size (you can adjust these values as needed)
+      const maxScaleFactor = canvas.width < canvas.height ? 0.3 : 1; // Scale down to 90% of the canvas dimensions at most
+  
       if (canvasRatio > imgRatio) {
-        drawWidth = canvas.width;
-        drawHeight = drawWidth / imgRatio;
-        offsetY = (canvas.height - drawHeight) / 2;
+          drawWidth = Math.min(canvas.width * maxScaleFactor, canvas.width);
+          drawHeight = drawWidth / imgRatio;
+          offsetY = (canvas.height - drawHeight) / 2;
       } else {
-        drawHeight = canvas.height;
-        drawWidth = drawHeight * imgRatio;
-        offsetX = (canvas.width - drawWidth) / 2;
+          drawHeight = Math.min(canvas.height * maxScaleFactor, canvas.height);
+          drawWidth = drawHeight * imgRatio;
+          offsetX = (canvas.width - drawWidth) / 2;
       }
-
+  
       ctx.save();
       if (totalImages - currentFrameIndex.current < 10) {
-        ctx.globalAlpha = (totalImages - currentFrameIndex.current) / 10;
+          ctx.globalAlpha = (totalImages - currentFrameIndex.current) / 10;
       }
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
       ctx.restore();
-    };
+  };
+  
 
     const addEventListeners = () => {
       window.addEventListener('scroll', handleScroll);
@@ -87,9 +95,9 @@ const App = () => {
 
   return (
     <div className="main-body-container">
+      <Menubar />
       <h1 className='main-title'>Airpods Pro</h1>
       <canvas ref={canvasRef}></canvas>
-      <div className="landing_container"></div>
     </div>
   );
 };

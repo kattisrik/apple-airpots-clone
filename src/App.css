@@ -7,10 +7,15 @@
 
 .main-title {
     position: fixed;
-    top: 25%;
+    top: 45%;
     width: 100vw;
     left: 50%;
     text-align: center;
     transform: translate(-50%, -50%);
-    font-size: clamp(2rem, 10vw, 14rem);
+    font-size: clamp(2.5rem, 14.5vw, 14.5rem);
+    margin: unset;
+    margin-top: 12px;
+    font-weight: 700;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #f5f5f7;
 }

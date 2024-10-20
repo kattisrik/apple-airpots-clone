@@ -1,0 +1,39 @@
+.ac-ln-content {
+    max-width: 980px;
+    margin: 0 auto;
+    z-index: 2;
+    border-bottom: 0.05px solid rgba(255, 255, 255, 0.24);
+}
+.ac-ln-title-container {
+    padding: 24px 24px 12px 0px;
+    position: sticky;
+    cursor: pointer;
+}
+.ac-ln-title {
+    font-size: 21px;
+    line-height: 1.1428571429;
+    font-weight: 600;
+    letter-spacing: .011em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    cursor: pointer;
+    padding: 0;
+    white-space: nowrap;
+    color: white;
+    transition: color .24s cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+.ac-ln-menu {
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    margin-top: -24px;
+    float: right;
+    display: flex;
+    gap: 18px;
+    color: white;
+}
+
+.ac-ln-menu-title {
+    color: white;
+}
